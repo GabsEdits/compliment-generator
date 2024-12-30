@@ -11,7 +11,8 @@
 
 ## API
 
-For the API, I used [Deno](https://deno.com) and [Hoco](https://jsr.io/@hoco/hoco).
+For the API, I used [Deno](https://deno.com) and
+[Hoco](https://jsr.io/@hoco/hoco).
 
 ### Examples
 
@@ -44,8 +45,7 @@ To start the server, run:
 deno run -NR mod.ts
 ```
 
-> ![NOTE]
-> Make sure you are in the `api` directory.
+> ![NOTE] Make sure you are in the `api` directory.
 
 ## Frontend
 
