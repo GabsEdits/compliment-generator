@@ -9,7 +9,47 @@
 - Frontend: [compliment.gxbs.dev](https://compliment.gxbs.dev)
 - API: [compliment-api.deno.dev](https://compliment-api.deno.dev)
 
-## Development
+## API
+
+For the API, I used [Deno](https://deno.com) and [Hoco](https://jsr.io/@hoco/hoco).
+
+### Examples
+
+For a compliment without a name:
+
+```http
+GET https://compliment-api.deno.dev/random/withoutname
+```
+
+For a compliment with a name:
+
+```http
+GET https://compliment-api.deno.dev/random/name/{name}
+```
+
+`{name}` is the name of the person you want to compliment. For example, if you
+want to compliment John, you would use:
+
+```http
+GET https://compliment-api.deno.dev/random/name/John
+```
+
+### Development
+
+Make sure you have [Deno](https://deno.com) installed.
+
+To start the server, run:
+
+```bash
+deno run -NR mod.ts
+```
+
+> ![NOTE]
+> Make sure you are in the `api` directory.
+
+## Frontend
+
+### Development
 
 The project is build using [Vite](https://vite.dev) and
 [Svelte](https://svelte.dev).\
