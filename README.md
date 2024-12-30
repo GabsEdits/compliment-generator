@@ -4,6 +4,11 @@
 <mark>Made for Highseas.</mark>
 </div>
 
+## Links
+
+- Frontend: [compliment.gxbs.dev](https://compliment.gxbs.dev)
+- API: [compliment-api.deno.dev](https://compliment-api.deno.dev)
+
 ## Development
 
 The project is build using [Vite](https://vite.dev) and
