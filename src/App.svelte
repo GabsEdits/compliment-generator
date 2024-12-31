@@ -55,7 +55,7 @@
 
         <h3 class="font-bold text-base">Do you want to use name in the compliment?</h3>
 
-        <div class="flex flex-row gap-[0.2rem] rounded-xl overflow-hidden">
+        <div class="flex flex-row gap-[0.1rem] rounded-xl overflow-hidden">
             <button class={`bg-zinc-200 hover:bg-zinc-300 dark:bg-zinc-800 hover:dark:bg-zinc-700 transition-colors py-2 px-6 ${$showInput ? 'bg-zinc-300 dark:bg-zinc-700' : 'bg-zinc-200 dark:bg-zinc-800'}`} on:click={() => showInput.set(true)}>Yes</button>
             <button class={`bg-zinc-200 hover:bg-zinc-300 dark:bg-zinc-800 hover:dark:bg-zinc-700 transition-colors py-2 px-6 ${$showInput === false ? 'bg-zinc-300 dark:bg-zinc-700' : 'bg-zinc-200 dark:bg-zinc-800'}`} on:click={() => { toggleUseName(false); showInput.set(false); }}>No</button>
         </div>
@@ -63,7 +63,7 @@
         {#if $showInput }
           <input
             type="text"
-            class="border border-gray-300 dark:border-gray-700 p-2 rounded w-full bg-zinc-200 dark:bg-zinc-900"
+            class="border border-gray-300 dark:border-gray-700 p-2 rounded w-full bg-zinc-200 dark:bg-zinc-800"
             on:input={(event) => { toggleUseName(true); generateCompliment(event); }}
             on:keypress={(event) => {
               if (event.key === 'Enter') {
