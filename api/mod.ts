@@ -1,8 +1,5 @@
 import { Hono } from "jsr:@hono/hono";
 
-import complimentsWithName from "./name.json" with { type: "json" };
-import complimentsWithoutName from "./withoutname.json" with { type: "json" };
-
 const app = new Hono();
 
 app.use("*", (c, next) => {
@@ -15,33 +12,50 @@ app.use("*", (c, next) => {
   return next();
 });
 
-app.get("/name/:name", (c) => {
+app.get("/:lang/name/:name", async (c) => {
+  const lang = c.req.param("lang");
   const name = c.req.param("name");
-  const personalizedCompliments = (complimentsWithName as string[]).map(
+  const complimentsWithName = await import(`./${lang}/name.json`, {
+    with: { type: "json" },
+  });
+  const personalizedCompliments = (complimentsWithName.default as string[]).map(
     (compliment) => compliment.replace("${name}", name),
   );
   return c.json(personalizedCompliments);
 });
 
-app.get("/withoutname", (c) => {
-  return c.json(complimentsWithoutName);
+app.get("/:lang/withoutname", async (c) => {
+  const lang = c.req.param("lang");
+  const complimentsWithoutName = await import(`./${lang}/withoutname.json`, {
+    with: { type: "json" },
+  });
+  return c.json(complimentsWithoutName.default);
 });
 
-app.get("/random/name/:name", (c) => {
+app.get("/:lang/random/name/:name", async (c) => {
+  const lang = c.req.param("lang");
   const name = c.req.param("name");
+  const complimentsWithName = await import(`./${lang}/name.json`, {
+    with: { type: "json" },
+  });
   const randomIndex = Math.floor(
-    Math.random() * (complimentsWithName as string[]).length,
+    Math.random() * (complimentsWithName.default as string[]).length,
   );
-  const randomCompliment = (complimentsWithName as string[])[randomIndex]
-    .replace("${name}", name);
+  const randomCompliment =
+    (complimentsWithName.default as string[])[randomIndex]
+      .replace("${name}", name);
   return c.json(randomCompliment);
 });
 
-app.get("/random/withoutname", (c) => {
+app.get("/:lang/random/withoutname", async (c) => {
+  const lang = c.req.param("lang");
+  const complimentsWithoutName = await import(`./${lang}/withoutname.json`, {
+    with: { type: "json" },
+  });
   const randomIndex = Math.floor(
-    Math.random() * (complimentsWithoutName as string[]).length,
+    Math.random() * (complimentsWithoutName.default as string[]).length,
   );
-  return c.json((complimentsWithoutName as string[])[randomIndex]);
+  return c.json((complimentsWithoutName.default as string[])[randomIndex]);
 });
 
 app.notFound((c) => c.text("Not Found", 404));

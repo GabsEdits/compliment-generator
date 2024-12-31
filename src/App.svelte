@@ -4,6 +4,7 @@
   const useName = writable(false);
   const complimentGenerated = writable(false);
   const showInput = writable(false);
+  const language = writable("en");
 
   async function fetchCompliment(url: string): Promise<string> {
     const response = await fetch(url);
@@ -18,8 +19,10 @@
     const input = event ? (event.target as HTMLInputElement) : { value: $name };
     name.set(input.value);
     const url = $useName
-      ? `https://compliment-api.deno.dev/random/name/${input.value}`
-      : `https://compliment-api.deno.dev/random/withoutname`;
+      ? `http://localhost:8000/${$language}/random/name/${input.value}`
+        : `http://localhost:8000/${$language}/random/withoutname`;
+    /* ? `https://compliment-api.deno.dev/${$language}/random/name/${input.value}`
+      : `https://compliment-api.deno.dev/${$language}/random/withoutname`; */
     try {
       const compliment = await fetchCompliment(url);
       document.getElementById("result").innerText = compliment;
@@ -44,6 +47,14 @@
 </script>
 
 <main class="mt-20 h-[90vh]">
+    <div class="absolute top-5 right-5">
+      <select bind:value={$language} class="bg-zinc-200 hover:bg-zinc-300 dark:bg-zinc-800 hover:dark:bg-zinc-700 py-2 px-6 rounded-xl w-max transition-colors appearance-none flex items-center justify-center text-center" on:change={() => generateCompliment()}>
+        <option value="en">English</option>
+        <option value="ro">Română</option>
+        <option value="de">Deutsch</option>
+      </select>
+    </div>
+
   <h1 class="font-black mb-1 text-3xl">Compliment Generator</h1>
   <small class="mb-10 block">Receive a random compliment</small>
 
