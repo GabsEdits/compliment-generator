@@ -35,7 +35,6 @@ want to compliment John, you would use:
 GET https://compliment-api.deno.dev/random/name/John
 ```
 
-
 `{language}` is the language of the compliment. Currently, the only supported
 languages are:
 
