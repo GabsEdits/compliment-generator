@@ -35,8 +35,9 @@
     generateCompliment();
   }
 
-  window.addEventListener("keypress", (event) => {
-    if (event.key === " ") {
+  window.addEventListener("keydown", (event) => {
+    if (event.key === " " && event.target === document.body) {
+      event.preventDefault();
       generateCompliment();
     }
   });
