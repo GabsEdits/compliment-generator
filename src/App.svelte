@@ -19,7 +19,9 @@
     const input = event ? (event.target as HTMLInputElement) : { value: $name };
     name.set(input.value);
     const url = $useName
-      ? `https://compliment-api.deno.dev/${$language}/random/name/${input.value}`
+    /* ? `http://localhost:8000/${$language}/random/name/${input.value}`
+      : `http://localhost:8000/${$language}/random/withoutname`; */
+     ? `https://compliment-api.deno.dev/${$language}/random/name/${input.value}`
       : `https://compliment-api.deno.dev/${$language}/random/withoutname`;
     try {
       const compliment = await fetchCompliment(url);
